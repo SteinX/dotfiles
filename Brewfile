@@ -110,6 +110,9 @@ cask "sloth"
 cask "xcodes"
 cask "fig"
 cask "iterm2"
+cask "visual-studio-code"
+cask "tower"
+cask "microsoft-edge"
 mas "Bitwarden", id: 1352778147
 mas "Keka", id: 470158793
 mas "Numbers 表格", id: 409203825
