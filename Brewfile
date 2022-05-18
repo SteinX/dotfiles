@@ -115,9 +115,5 @@ cask "tower"
 cask "microsoft-edge"
 mas "Bitwarden", id: 1352778147
 mas "Keka", id: 470158793
-mas "Numbers 表格", id: 409203825
-mas "Pages 文稿", id: 409201541
 mas "Tencent Lemon Lite", id: 1449962996
-mas "The Unarchiver", id: 425424353
-mas "Unsplash Wallpapers", id: 1284863847
 mas "Xcode", id: 497799835
