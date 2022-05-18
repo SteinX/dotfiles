@@ -27,8 +27,17 @@ function doIt() {
 			echo "Neither curl nor wget is available for fetching the source of oh-my-zsh"
 		fi
 
+		# Make sure zsh is in use
+		if [[ ! "$(SHELL)" = *zsh ]]; then
+			zsh
+		fi
+
 		# Powerlevel10k
 		git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+		# zsh-autosuggestions
+		git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+		# zsh-syntax-highlighting
+		git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	fi
 
 	rsync --exclude ".git/" \
