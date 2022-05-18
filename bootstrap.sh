@@ -36,12 +36,18 @@ function doIt() {
 		--exclude ".osx" \
 		--exclude ".macos" \
 		--exclude "bootstrap.sh" \
+		--exclude "init" \
 		--exclude "Brewfile" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
-	source ~/.zshrc
-	source ~/.bash_profile;
+
+	local shell_in_use="$(SHELL)"
+	if [[ $shell_in_use = *zsh ]]; then
+		source ~/.zshrc
+	elif [[ $shell_in_use = *bash ]]; then
+		source ~/.bash_profile;
+	fi
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
