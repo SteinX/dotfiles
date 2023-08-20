@@ -1,5 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -76,6 +76,9 @@ else
   export EDITOR='vim'
 fi
 
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -84,18 +87,20 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+alias git='LANG=en_GB git'
 alias ls="lsd"
 alias zshconfig="code ~/.zshrc"
 alias zshenv="code ~/.zshenv"
+alias gfwupdate="zsh /Users/steinx/Documents/Workspace/Util/gfwlist_update.sh"
+alias ariaconfig="code ~/.aria2/aria2.conf"
 alias ssproxy="export http_proxy='http://localhost:1099'; export https_proxy='http://localhost:1099'"
 alias brewupdate="brew update; brew upgrade"
+alias rt="trash"
 alias pdst="pod install"
 alias pdup="pod update"
 alias anysource="sudo spctl --master-disable"
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias top="sudo htop"
-alias cat="bat"
-alias ncat="cat"
 alias bdown="BBDown -hevc -mt"
 
 # Util
@@ -116,4 +121,7 @@ chpwd_functions=(${chpwd_functions[@]} "list_all")
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
