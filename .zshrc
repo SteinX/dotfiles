@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -10,6 +8,12 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/steinx/.oh-my-zsh
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -58,7 +62,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract autojump z docker xcode sublime svn zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git extract autojump z docker xcode svn zsh-autosuggestions zsh-syntax-highlighting fzf-tab)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,21 +91,17 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-alias git='LANG=en_GB git'
+alias git='LANGUAGE=en_US.UTF-8 git'
 alias ls="lsd"
 alias zshconfig="code ~/.zshrc"
 alias zshenv="code ~/.zshenv"
-alias gfwupdate="zsh /Users/steinx/Documents/Workspace/Util/gfwlist_update.sh"
 alias ariaconfig="code ~/.aria2/aria2.conf"
-alias ssproxy="export http_proxy='http://localhost:1099'; export https_proxy='http://localhost:1099'"
 alias brewupdate="brew update; brew upgrade"
-alias rt="trash"
 alias pdst="pod install"
 alias pdup="pod update"
 alias anysource="sudo spctl --master-disable"
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias top="sudo htop"
-alias bdown="BBDown -hevc -mt"
 
 # Util
 [ -f /usr/local/etc/profile.d/autojump.sh  ] && . /usr/local/etc/profile.d/autojump.sh
@@ -119,9 +119,3 @@ chpwd_functions=(${chpwd_functions[@]} "list_all")
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
